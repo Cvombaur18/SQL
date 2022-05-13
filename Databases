@@ -1,4 +1,7 @@
-//To do list database
+## In this file i have created databases and filtered througn data.  I have 9 databases created and progressively got into more difficult projects.  
+
+
+#To do list database
 
 CREATE TABLE todo_list (id INTEGER PRIMARY KEY, item TEXT, minutes INTEGER);
 INSERT INTO todo_list VALUES (1, "Wash the dishes", 15);
