@@ -1,101 +1,101 @@
 #In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
 
-/* SELECT * FROM BIT_DB.JanSales LIMIT 10; */
+SELECT * FROM BIT_DB.JanSales LIMIT 10;
 
 
 /*How many orders were placed in January?*/
 
-/* SELECT COUNT(orderID) FROM BIT_DB.JanSales; */
+SELECT COUNT(orderID) FROM BIT_DB.JanSales;
 
 -----------------------------------------------------------------
 
 /* How many of those orders were for an iPhone? */
 
-/* SELECT COUNT(*) FROM BIT_DB.JanSales
-WHERE Product = 'iPhone'; */
+SELECT COUNT(*) FROM BIT_DB.JanSales
+WHERE Product = 'iPhone';
 
 -------------------------------------------------------------------
 
 
-/* SELECT * FROM BIT_DB.customers LIMIT 10; */
-/* SELECT * FROM BIT_DB.FebSales LIMIT 10; */
+SELECT * FROM BIT_DB.customers LIMIT 10;
+SELECT * FROM BIT_DB.FebSales LIMIT 10;
 
 
 /* Select the customer account numbers for all the orders that were placed in February. */
 
-/* SELECT acctnum
+SELECT acctnum
 FROM BIT_DB.customers cust
 INNER JOIN BIT_DB.FebSales feb
-ON cust.order_ID = feb.orderID; */
+ON cust.order_ID = feb.orderID;
 
 -----------------------------------------------------------------------------------------------
 
 /* Which product was the cheapest one sold in January, and what was the price? */
 
-/* SELECT * FROM BIT_DB.JanSales LIMIT 10; */
+SELECT * FROM BIT_DB.JanSales LIMIT 10; 
 
-/*SELECT distinct Product, MIN(price) FROM BIT_DB.JanSales; */
+ELECT distinct Product, MIN(price) FROM BIT_DB.JanSales;
 
 -------------------------------------------------------------------------------------------
 
 /* What is the total revenue for each product sold in January?*/
 
-/* SElECT * FROM BIT_DB.JanSales LIMIT 10; */
+SElECT * FROM BIT_DB.JanSales LIMIT 10;
 
-/* SELECT product, SUM(Quantity * price) AS total_revenue FROM BIT_DB.JanSales
-GROUP BY Product; */
+SELECT product, SUM(Quantity * price) AS total_revenue FROM BIT_DB.JanSales
+GROUP BY Product;
 
 ------------------------------------------------------------------------------------------------
 
 /* Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, 
 and what was the total revenue? */
 
-/* SELECT * FROM BIT_DB.FebSales LIMIT 10; */
+SELECT * FROM BIT_DB.FebSales LIMIT 10;
 
-/*SELECT Product, SUM(Quantity), SUM (Quantity)* price AS revenue
+ELECT Product, SUM(Quantity), SUM (Quantity)* price AS revenue
 FROM BIT_DB.FebSales
 WHERE location = '548 Lincoln St, Seattle, WA 98101'
-GROUP BY product;*/
+GROUP BY product;
 
 ------------------------------------------------------------------------------------------------
 
 /* How many customers ordered more than 2 products at a time in February, 
 and what was the average amount spent for those customers? */
 
-/* SELECT * FROM BIT_DB.FebSales LIMIT 10; */
+SELECT * FROM BIT_DB.FebSales LIMIT 10;
 
-/*SELECT * FROM BIT_DB.customers LIMIT 10; */
+ELECT * FROM BIT_DB.customers LIMIT 10;
 
-/* SELECT COUNT(cust.acctnum), AVG(Quantity) * price
+SELECT COUNT(cust.acctnum), AVG(Quantity) * price
 FROM BIT_DB.FebSales sales
 LEFT JOIN BIT_DB.customers cust
 ON sales.orderid = cust.order_id
-WHERE sales.Quantity > 2; */
+WHERE sales.Quantity > 2; 
 
 ------------------------------------------------------------------------------------------------
 
 /*#Practice with between and LIKE with %*/
 
 
-/*SELECT orderdate
+SELECT orderdate
 FROM BIT_DB.FebSales
-WHERE orderdate between '02/13/19 00:00' AND '02/18/19 00:00' */
+WHERE orderdate between '02/13/19 00:00' AND '02/18/19 00:00';
 
-/*SELECT location
+SELECT location
 FROM BIT_DB.FebSales 
-WHERE orderdate = '02/18/19 01:35'*/
+WHERE orderdate = '02/18/19 01:35';
 
-/*SELECT sum(quantity)
+SELECT sum(quantity)
 FROM BIT_DB.FebSales 
-WHERE orderdate like '02/18/19%'*/
+WHERE orderdate like '02/18/19%';
 
-/*SELECT distinct Product
+SELECT distinct Product
 FROM BIT_DB.FebSales
-WHERE Product LIKE '%Batteries%';*/
+WHERE Product LIKE '%Batteries%';
 
-/* SELECT distinct Product, price
+SELECT distinct Product, price
 FROM BIT_DB.FebSales
-WHERE price LIKE '%.99'; */
+WHERE price LIKE '%.99';
 
 -----------------------------------------------------------------------------------------------------------
 
@@ -103,56 +103,55 @@ WHERE price LIKE '%.99'; */
 
 
 
-/*SELECT Product, SUM(Quantity)
+SELECT Product, SUM(Quantity)
 FROM BIT_DB.FebSales
 WHERE location LIKE '%Los Angeles%'
-GROUP BY Product;*/
+GROUP BY Product;
 
 ----------------------------------------------------------------------------------------------------------
 
-/*SELECT * FROM BIT_DB.JanSales;*/
+SELECT * FROM BIT_DB.JanSales;
 
 /*ow many locations are there in New York that sold more than 1 product in January?*/
 
-/*SELECT COUNT(distinct location)
+SELECT COUNT(distinct location)
 FROM BIT_DB.JanSales
-WHERE Quantity > 1 AND location LIKE '%New York%';*/
+WHERE Quantity > 1 AND location LIKE '%New York%';
 
 ----------------------------------------------------------------------------------------------------------
 
 /*How many of each type of headphone were sold in February?*/
 
-/*SELECT SUM(Quantity) As Quantity, Product
+SELECT SUM(Quantity) As Quantity, Product
 FROM BIT_DB.FebSales
 WHERE Product LIKE '%Headphones%'
-GROUP BY Product;*/
-
+GROUP BY Product;
 ----------------------------------------------------------------------------------------------------------
 
 /*What was the average amount spent per account in February?*/
 
-/*SELECT SUM(Quantity * price)/ COUNT(cust.acctnum)
+SELECT SUM(Quantity * price)/ COUNT(cust.acctnum)
 FROM BIT_DB.customers cust
 INNER JOIN BIT_DB.FebSales sales
-ON cust.order_id = sales.orderID*/
+ON cust.order_id = sales.orderID
 
 ----------------------------------------------------------------------------------------------------------
 
 /*What was the average quantity of products purchased per account in February?*/
 
-/*SELECT SUM(Quantity) / COUNT(cust.acctnum)
+SELECT SUM(Quantity) / COUNT(cust.acctnum)
 FROM BIT_DB.FebSales sales
 INNER JOIN BIT_DB.customers cust
-ON sales.orderID = cust.order_id;*/
+ON sales.orderID = cust.order_id;
 
 ----------------------------------------------------------------------------------------------------------
 
 /*Which product brought in the most revenue in January and how much revenue did it bring in total?*/
 
 
-/*SELECT product, 
+SELECT product, 
 sum(quantity*price)
 FROM BIT_DB.JanSales 
 GROUP BY product
 ORDER BY sum(quantity*price) desc 
-LIMIT 1;*/
+LIMIT 1;
