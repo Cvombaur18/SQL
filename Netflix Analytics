@@ -15,8 +15,7 @@ FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
 ORDER BY title asc;
 
 #4. Who was the Director for the movie Bright Star? 
-select 
-director
+select director
 FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
 LEFT JOIN  "CharlotteChaze/BreakIntoTech"."netflix_people" people
 ON titles.show_id=people.show_id
@@ -29,3 +28,26 @@ WHERE type='Movie'
 GROUP BY title, release_year
 ORDER BY release_year asc
 LIMIT 1;
+
+#6 What were the titles, release_year, and date_added of movies released from the United States in descending order?
+SELECT title, release_year, date_added
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" 
+WHERE Country = 'United States'
+ORDER BY date_added DESC; 
+
+
+#7 What were the titles of movies listed_in Thriller by ascending order with a limit of 25?
+SELECT title, listed_in
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE listed_in = 'Thrillers'
+ORDER BY title ASC
+LIMIT 25; 
+
+
+#8 Who was the director of a movie that directed a movie starting with John in ascending order of director?
+SELECT director, title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
+JOIN "CharlotteChaze/BreakIntoTech"."netflix_people" people
+ON titles.show_id = people.Show_id
+WHERE title LIKE 'John%'
+ORDER BY director ASC; 
